@@ -2,7 +2,7 @@ import pytest
 
 
 def capital_case(x):
-    f not isinstance(x, str):
+    if not isinstance(x, str):
         raise TypeError('Please provide a string argument')
     return x.capitalize()
 
