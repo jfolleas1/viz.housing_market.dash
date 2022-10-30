@@ -102,6 +102,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+
+dash-env
 .env
 .venv
 env/
