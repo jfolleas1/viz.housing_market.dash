@@ -21,9 +21,9 @@ navbar = dbc.NavbarSimple(
     children=[
         
         dbc.NavItem(dbc.NavLink("Data table", href="/data-table")),
-        dbc.NavItem(dbc.NavLink("Map", href="#")),
-        dbc.NavItem(dbc.NavLink("Plots", href="#")),
-        dbc.NavItem(dbc.NavLink("Linear model", href="#")),
+        dbc.NavItem(dbc.NavLink("Map", href="/map")),
+        dbc.NavItem(dbc.NavLink("Plots", href="/plots")),
+        dbc.NavItem(dbc.NavLink("Linear model", href="/linear-model")),
         html.A(html.Img(src=img.get_asset_img(img_file_name='plotly_logo_small.png'), height='30px'),
                href='https://plotly.com')
     ],
