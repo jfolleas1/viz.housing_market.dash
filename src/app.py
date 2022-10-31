@@ -5,15 +5,18 @@ from dash import Dash, html, dcc
 import plotly.express as px
 import pandas as pd
 
-app = Dash(__name__)
+import dash_bootstrap_components as dbc
 
-app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
-    html.Img(src=app.get_asset_url('only_lyon_logo.png')),
-    html.Div(children='''
-        Dash: A web application framework for your data.
-    ''')
-])
+from flask import Flask
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+
+server = Flask(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], use_pages=True)
+app.title = "Lyon housing market"
+
+server = app.server         # the server is needed to deploy the application
+
+if __name__ == "__main__":
+    app.run_server(
+        debug=True,
+    )

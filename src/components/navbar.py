@@ -1,85 +1,68 @@
-# notes
-'''
-This file is for creating a navigation bar that will sit at the top of your application.
-Much of this page is pulled directly from the Dash Bootstrap Components documentation linked below:
-https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/
-'''
+# from dash import html
+# import dash_bootstrap_components as dbc
+
+# navbar = dbc.Navbar(dbc.Container(
+#     [html.H1(children='Navbar')]
+# ),color='dark', dark=True)
+
 
 # package imports
 from dash import html, callback, Output, Input, State
 import dash_bootstrap_components as dbc
 
 # local imports
-from utils.images import logo_encoded
-from components.login import login_info
+from utils import images as img
+
+PLOTLY_LOGO = "https://images.plot.ly/logo/new-branding/plotly-logomark.png"
+
 
 # component
-navbar = dbc.Navbar(
-    dbc.Container(
-        [
-            html.A(
-                dbc.Row(
-                    [
-                        dbc.Col(html.Img(src=logo_encoded, height='30px')),
-                    ],
-                    align='center',
-                    className='g-0',
-                ),
-                href='https://plotly.com',
-                style={'textDecoration': 'none'},
-            ),
-            dbc.NavbarToggler(id='navbar-toggler', n_clicks=0),
-            dbc.Collapse(
-                dbc.Nav(
-                    [
-                        dbc.NavItem(
-                            dbc.NavLink(
-                                'Home',
-                                href='/'
-                            )
-                        ),
-                        dbc.NavItem(
-                            dbc.NavLink(
-                                'Complex Page',
-                                href='/complex'
-                            )
-                        ),
-                        html.Div(
-                            login_info
-                        )
-                    ]
-                ),
-                id='navbar-collapse',
-                navbar=True
-            ),
-        ]
-    ),
-    color='dark',
+navbar = dbc.NavbarSimple(
+    children=[
+        
+        dbc.NavItem(dbc.NavLink("Data table", href="/data-table")),
+        dbc.NavItem(dbc.NavLink("Map", href="#")),
+        dbc.NavItem(dbc.NavLink("Plots", href="#")),
+        dbc.NavItem(dbc.NavLink("Linear model", href="#")),
+        html.A(html.Img(src=img.get_asset_img(img_file_name='plotly_logo_small.png'), height='30px'),
+               href='https://plotly.com')
+    ],
+    brand="Lyon housing market dashboard",
+    brand_href="/",
+    color="red",
     dark=True,
 )
+    #             html.H1(children='Navbar', color='white'),
+    #             html.A(
+    #                 dbc.Row(
+    #                     [
+    #                         dbc.Col(html.Img(src=img.get_asset_img(img_file_name='plotly_logo_small.png'), height='30px')),
+    #                     ],
+    #                     align='center',
+    #                     className='g-0',
+    #                 ),
+    #                 href='https://plotly.com',
+    #                 style={'textDecoration': 'none'},
+    #             ),
+    #             dbc.NavbarToggler(id='navbar-toggler', n_clicks=0),
+    #             dbc.Collapse(
+    #                 dbc.Nav(
+    #                     [
+    #                         dbc.NavItem(
+    #                             dbc.NavLink(
+    #                                 'Home',
+    #                                 href='/'
+    #                             )
+    #                         )
+    #                     ]
+    #                 ),
+    #                 id='navbar-collapse',
+    #                 navbar=True
+    #             ),
+    #         ]),
+    #     ]
+    # ),
+    # color='dark',
+    # dark=True,
+# )
 
-# add callback for toggling the collapse on small screens
-@callback(
-    Output('navbar-collapse', 'is_open'),
-    Input('navbar-toggler', 'n_clicks'),
-    State('navbar-collapse', 'is_open'),
-)
-def toggle_navbar_collapse(n, is_open):
-    if n:
-        return not is_open
-    return is_open
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-dash-app-structure/navbar.py at f8d4f86733f43d872e45297884f3600b6dcd264d · bradley-erickson/dash-app-structure
