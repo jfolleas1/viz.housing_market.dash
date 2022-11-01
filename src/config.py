@@ -1,1 +1,1 @@
-DATA_LOCATION = "../data/lyon_housing.csv"
+DATA_LOCATION = "data/lyon_housing.csv"

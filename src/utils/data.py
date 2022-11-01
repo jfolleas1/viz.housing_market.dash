@@ -21,3 +21,7 @@ class Dataset(object):
         filtering_dict
         print('Run get_selection')
         return self.get()
+
+    @lru_cache(maxsize=10)
+    def get_unique_values(self, column_name):
+        return list(self.get()[column_name].unique())
