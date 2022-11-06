@@ -13,15 +13,17 @@ class Dataset(object):
         self.__data = pd.read_csv(cfg.DATA_LOCATION)
 
     def get(self):
-        print('Run get')
         return self.__data
 
     @lru_cache(maxsize=10)
     def get_selection(self, filtering_dict):
         filtering_dict
-        print('Run get_selection')
         return self.get()
 
     @lru_cache(maxsize=10)
     def get_unique_values(self, column_name):
         return list(self.get()[column_name].unique())
+    
+    @lru_cache(maxsize=10)
+    def get_aggregate(self, column_name, agg_function):
+        return agg_function(self.get()[column_name])
