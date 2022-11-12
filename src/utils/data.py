@@ -15,10 +15,21 @@ class Dataset(object):
     def get(self):
         return self.__data
 
+    @staticmethod
+    def apply_filters(initial_data, filters):
+        filtered_data = initial_data.copy()
+        for col, op, val in filters:
+            if op == '<=':
+                filtered_data = filtered_data[filtered_data[col] <= val]
+            elif op == '>=':
+                filtered_data = filtered_data[filtered_data[col] >= val]
+            elif op == 'in':
+                filtered_data = filtered_data[filtered_data[col].isin(val)]
+        return filtered_data
+
     @lru_cache(maxsize=10)
-    def get_selection(self, filtering_dict):
-        filtering_dict
-        return self.get()
+    def get_selection(self, filters_list):
+        return self.apply_filters(self.get(), filters_list)
 
     @lru_cache(maxsize=10)
     def get_unique_values(self, column_name):
