@@ -107,18 +107,3 @@ def get_filter_list(filters_panel_content):
                     filters.append((MAPPING_INPUT_ID_COLUMN[filter_el['props']['id']], '>=',
                             filter_el['props']['children'][0]['props']['children'][1]['props']['value']))
     return filters
-
-## For testing purpose only
-
-@callback(
-    Output("data-filtering-pannel", "children"),
-    Input("apply-filter-button", "n_clicks"),
-    State("data-filtering-pannel", "children"),
-    prevent_initial_call=True
-)
-def apply_filter_on_data(n_clicks, filters_panel_content):
-    print('====== FILTERS ======')
-    filters = get_filter_list(filters_panel_content)
-    print(filters)
-    print('=====================')
-    return filters_panel_content

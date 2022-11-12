@@ -27,9 +27,9 @@ class Dataset(object):
                 filtered_data = filtered_data[filtered_data[col].isin(val)]
         return filtered_data
 
-    @lru_cache(maxsize=10)
     def get_selection(self, filters_list):
-        return self.apply_filters(self.get(), filters_list)
+        selection  = self.apply_filters(self.get(), filters_list)
+        return selection
 
     @lru_cache(maxsize=10)
     def get_unique_values(self, column_name):

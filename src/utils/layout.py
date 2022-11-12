@@ -20,6 +20,7 @@ def get_side_bar_layout(side_bar_content, main_panel_content):
                                 main_panel_content
                             )
                         ),
+                        width={"size": 9}
                     )
                 ],
             ),
