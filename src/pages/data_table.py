@@ -11,31 +11,33 @@ dash.register_page(__name__, path='/data-table')
 
 layout = html.Div(children=[
     navbar,
-    html.Img(src=img.get_asset_img(img_file_name='only_lyon_logo.png')),
-    html.H1(children='This is our Data table page'),
-    get_side_bar_layout(
-        filtering_panel,
-        html.Div(children=[
-            html.H2('Data table : '),
-            dcc.Loading(
-                id="loading-sign-table",
-                children=[
-                    dash.dash_table.DataTable(
-                    data=Dataset().get_selection([]).to_dict('records'),
-                    id='data-table',
-                    page_size=10,
-                    columns=[{"name": i, "id": i} for i in Dataset().get_selection([]).columns],
-                    style_table={'overflowY': 'scroll'},
-                    style_as_list_view=True,
-                    style_cell={'padding': '20px'},
-                    style_header={
-                        'fontWeight': 'bold'
-                    }
-                    )],
-                type="circle",
-                )
-        ])
-    )
+    html.Div(children=[
+        html.Img(src=img.get_asset_img(img_file_name='only_lyon_logo.png')),
+        html.H1(children='This is our Data table page'),
+        get_side_bar_layout(
+            filtering_panel,
+            html.Div(children=[
+                html.H2('Data table : '),
+                dcc.Loading(
+                    id="loading-sign-table",
+                    children=[
+                        dash.dash_table.DataTable(
+                        data=Dataset().get_selection([]).to_dict('records'),
+                        id='data-table',
+                        page_size=10,
+                        columns=[{"name": i, "id": i} for i in Dataset().get_selection([]).columns],
+                        style_table={'overflowY': 'scroll'},
+                        style_as_list_view=True,
+                        style_cell={'padding': '20px'},
+                        style_header={
+                            'fontWeight': 'bold'
+                        }
+                        )],
+                    type="circle",
+                    )
+            ])
+        )
+    ], style={"padding-left": "3%", "padding-right": "3%"})
 ])
 
 @callback(
