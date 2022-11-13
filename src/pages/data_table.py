@@ -18,7 +18,7 @@ layout = html.Div(children=[
         html.Div(children=[
             html.H2('Data table : '),
             dcc.Loading(
-                id="loading-sign",
+                id="loading-sign-table",
                 children=[
                     dash.dash_table.DataTable(
                     data=Dataset().get_selection([]).to_dict('records'),
@@ -39,11 +39,11 @@ layout = html.Div(children=[
 ])
 
 @callback(
-    Output("loading-sign", "children"),
+    Output("loading-sign-table", "children"),
     Output("data-table", "data"),
     Input("apply-filter-button", "n_clicks"),
     State("data-filtering-pannel", "children"),
-    State("loading-sign", "children"),
+    State("loading-sign-table", "children"),
     prevent_initial_call=True
 )
 def apply_filter_on_data(n_clicks, filters_panel_content, loading_sign_children):
