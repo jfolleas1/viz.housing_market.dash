@@ -1,0 +1,1 @@
+DATA_LOCATION = "data/lyon_housing.csv"
