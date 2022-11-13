@@ -27,6 +27,7 @@ class Dataset(object):
                 filtered_data = filtered_data[filtered_data[col].isin(val)]
         return filtered_data
 
+    
     def get_selection(self, filters_list):
         selection  = self.apply_filters(self.get(), filters_list)
         return selection
