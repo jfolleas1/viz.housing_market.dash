@@ -33,7 +33,9 @@ layout = html.Div(children=[
                     }
                     )],
                 type="circle",
-                )
+                ),
+            html.Button("Download CSV", id="btn_csv"),
+            dcc.Download(id="download-dataframe-csv"),
         ])
     )
 ])
@@ -50,3 +52,14 @@ def apply_filter_on_data(n_clicks, filters_panel_content, loading_sign_children)
     filters = get_filter_list(filters_panel_content)
     new_data = Dataset().get_selection(filters).to_dict('records')
     return loading_sign_children, new_data
+
+@callback(
+    Output("download-dataframe-csv", "data"),
+    Input("btn_csv", "n_clicks"),
+    State("data-filtering-pannel", "children"),
+    prevent_initial_call=True,
+)
+def func(n_clicks, filters_panel_content):
+    filters = get_filter_list(filters_panel_content)
+    selected_data = Dataset().get_selection(filters)
+    return dcc.send_data_frame(selected_data.to_csv, "lyon_housing_market.csv")

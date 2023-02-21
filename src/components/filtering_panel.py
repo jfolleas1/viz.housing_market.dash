@@ -72,7 +72,7 @@ filtering_panel = html.Div(id='data-filtering-pannel', children=[
                       min=0,
                       value=0)
             ],
-            style={'width': '49%', 'display': 'inline-block'}
+            style={'width': '40%', 'display': 'inline-block'}
         ),
         html.Div(
             [
@@ -82,7 +82,7 @@ filtering_panel = html.Div(id='data-filtering-pannel', children=[
                       min=0,
                       value=Dataset().get_aggregate('prix', max))
             ],
-            style={'width': '49%', 'display': 'inline-block'}
+            style={'width': '40%', 'display': 'inline-block'}
         )
     ]),
     html.Button("Apply filters", id="apply-filter-button", style={'margin-top': '10px'}),
